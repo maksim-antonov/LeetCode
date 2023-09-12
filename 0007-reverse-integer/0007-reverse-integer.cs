@@ -13,14 +13,14 @@ public class Solution {
         }
 
         var outNum = 0;
-        var strs = str.ToArray();
-        for (var i = 0; i < strs.Length / 2; i++) {
-            var temp = strs[strs.Length - (1 + i)];
-            strs[strs.Length - 1 - i] = strs[i];
-            strs[i] = temp;
+        var strArr = str.ToArray();
+        for (var i = 0; i < strArr.Length / 2; i++) {
+            var temp = strArr[strArr.Length - (1 + i)];
+            strArr[strArr.Length - 1 - i] = strArr[i];
+            strArr[i] = temp;
         }
 
-        str = string.Join("", strs);
+        str = string.Join("", strArr);
 
         if (isNegative) 
             str = "-" + str;
