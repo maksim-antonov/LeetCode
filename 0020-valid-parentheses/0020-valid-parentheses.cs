@@ -1,10 +1,28 @@
 public class Solution {
     public bool IsValid(string s) {
-        while (s.Contains("()") || s.Contains("[]") || s.Contains("{}"))
+        Dictionary<char, char> bracketsMap = new Dictionary<char, char>
         {
-            s = s.Replace("()", "").Replace("[]", "").Replace("{}", "");
-        }
+            {'{',  '}'},
+            {'(',  ')'},
+            {'[',  ']'},
+        };
+        Stack<char> openBrackets = new Stack<char>();
+        
+        foreach (char bracket in s)
+        {
+            if (bracketsMap.ContainsKey(bracket))
+                openBrackets.Push(bracket);
+            else
+            {
+                if (openBrackets.Count == 0)
+                    return false;
+                    
+                if (bracketsMap[openBrackets.Pop()] == bracket)
+                    continue;
 
-        return s.Length == 0;
+                return false;
+            }
+        }
+        return openBrackets.Count == 0;
     }
 }
