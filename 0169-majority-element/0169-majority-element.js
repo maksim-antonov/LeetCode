@@ -4,21 +4,12 @@
  */
 var majorityElement = function(nums) {
     nums.sort((a, b) => a - b);
-    let count = 0;
 
-    if (nums.length === 1) {
-        return nums[0];
+    function myRound(num) {
+        if (num % 1 === 0) return num;
+        if (num % 1 <= 0.5) return Math.floor(num);
+        else return Math.ceil(num)
     }
 
-    for (let i = 0; i < nums.length - 1; i++) {
-        if (nums[i] !== nums[i + 1]) {
-            count = 0;
-        } else {
-            count++;
-        }
-        if (count >= Math.floor(nums.length / 2)) {
-            return nums[i];
-        }
-    }
-    return 0;
+    return nums[myRound(nums.length/2)];
 };
