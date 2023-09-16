@@ -3,22 +3,22 @@
  * @return {number}
  */
 var majorityElement = function(nums) {
-    const map = new Map()
+    nums.sort((a, b) => a - b);
+    let count = 0;
 
-    for (let num of nums) {
-        const val = map.get(num)
+    if (nums.length === 1) {
+        return nums[0];
+    }
 
-        if (val) {
-            map.set(num, val + 1)
+    for (let i = 0; i < nums.length - 1; i++) {
+        if (nums[i] !== nums[i + 1]) {
+            count = 0;
         } else {
-            map.set(num, 1)
+            count++;
+        }
+        if (count >= Math.floor(nums.length / 2)) {
+            return nums[i];
         }
     }
-
-    for (let key of map.keys()) {
-        if (map.get(key) >= nums.length / 2)
-            return key
-    }
-
-    return 0
+    return 0;
 };
