@@ -6,18 +6,19 @@ var removeDuplicates = function(nums) {
     if (nums.length === 0) return 0;
 
     let k = 1;
-    let prev = nums[0];
+    let i = 0
 
-    // Loop through the array, starting from the second element
-    for (let i = 1; i < nums.length; i++) {
-        if (nums[i] === prev) continue;
+    while (i < nums.length) {
+        if (nums[i] === nums[k-1]) {
+            i++;
+            continue;
+        }
 
         // Copy it to the k-th position in the array
         nums[k] = nums[i];
-        // Increment k by one
+        // Increment k and i by one
         k++;
-        // Update prev
-        prev = nums[i];
+        i++;
     }
 
     return k;
